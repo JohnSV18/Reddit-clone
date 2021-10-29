@@ -1,0 +1,27 @@
+{
+  "name": "reddit-clone",
+  "version": "1.0.0",
+  "description": "💬 This tutorial is part of a four part series with the Giphy Search Tutorial, the Concentration Game, the Rotten Potatoes Tutorial.",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "dev": "nodemon server.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/JohnSV18/Reddit-clone.git"
+  },
+  "author": "John Marcos",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/JohnSV18/Reddit-clone/issues"
+  },
+  "homepage": "https://github.com/JohnSV18/Reddit-clone#readme",
+  "dependencies": {
+    "express": "^4.17.1",
+    "express-handlebars": "^5.3.4"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.14"
+  }
+}
