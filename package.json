@@ -19,7 +19,9 @@
   "homepage": "https://github.com/JohnSV18/Reddit-clone#readme",
   "dependencies": {
     "express": "^4.17.1",
-    "express-handlebars": "^5.3.4"
+    "express-handlebars": "^5.3.4",
+    "express-validator": "^6.13.0",
+    "mongoose": "^6.0.12"
   },
   "devDependencies": {
     "nodemon": "^2.0.14"
