@@ -12,9 +12,9 @@ app.use(express.urlencoded({ extended: false }));
 require('./data/reddit-db');
 require('./controllers/posts')(app);
 
-app.get("/", function (req, res) {
-     res.render("home");
-});
+// app.get("/", function (req, res) {
+//      res.render("home");
+// });
 
 app.get("/posts/new", function (req, res) {
     res.render("posts-new");
