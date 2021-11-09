@@ -17,4 +17,12 @@ module.exports = (app) => {
         // Save instance of post model to db and redirect to the root 
         post.save(() => res.redirect('/'));
     });
+    // SHOW POST
+    app.get('/posts/:id', (req, res) => {
+        Post.findById(req.params.id).lean()
+          .then((post) => res.render('posts-show', { post }))
+          .catch((err) => {
+              console.log(err.message);
+          })
+    })
   };
