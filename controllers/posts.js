@@ -9,6 +9,10 @@ module.exports = (app) => {
           console.log(err.message);
         }
         });
+
+    app.get("/posts/new", function (req, res) {
+        res.render("posts-new");
+    });
     // CREATE
     app.post('/posts/new', (req, res) => {
         // Instantiate instanc of post model
@@ -25,4 +29,9 @@ module.exports = (app) => {
               console.log(err.message);
           })
     })
-  };
+   // SUBREDDIT
+    app.get('/n/:subreddit', async (req, res) => {
+      const posts = await Post.find({ subreddit: req.params.subreddit }).lean()
+      res.render('posts-index', { posts })
+      })
+};

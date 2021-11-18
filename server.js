@@ -8,17 +8,10 @@ app.set('view engine', 'handlebars');
 
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
+
 // set db 
 require('./data/reddit-db');
 require('./controllers/posts')(app);
-
-// app.get("/", function (req, res) {
-//      res.render("home");
-// });
-
-app.get("/posts/new", function (req, res) {
-    res.render("posts-new");
-});
 
 app.listen(port, () => {
     console.log(`App listening at http://localhost:${port}`)
