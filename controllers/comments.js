@@ -3,7 +3,9 @@ module.exports = (app) => {
     const Post = require('../models/post')
     // CREATE COMMENT
     app.post("/posts/:postId/comments", (req, res) => {
+        if (req.user) {
         const comment = new Comment(req.body);
+        comment.author = req.user._id;
 
         comment
             .save()
@@ -16,6 +18,8 @@ module.exports = (app) => {
             .catch((err) => {
                 console.log(err);
         })
-    })
-
+        } else {
+            return res.status(401); // Unauthorized
+        }
+    });
 };

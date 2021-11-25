@@ -4,7 +4,8 @@ const bcrypt = require('bcryptjs');
 const userSchema = new Schema({
     username: { type:String, required: true },
     password: { type:String, select: false },
-}, { timestamps: true });
+    posts: [{ type: Schema.Types.ObjectId, ref: 'Post' }],
+}, { timestamps: true }); 
 
 //must use function expressions here! ES6 => functions do not bind this!
 
