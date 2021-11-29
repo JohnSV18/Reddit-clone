@@ -1,6 +1,6 @@
+const Comment = require('../models/comment');
+const Post = require('../models/post')
 module.exports = (app) => {
-    const Comment = require('../models/comment');
-    const Post = require('../models/post')
     // CREATE COMMENT
     app.post("/posts/:postId/comments", (req, res) => {
         if (req.user) {
@@ -9,12 +9,17 @@ module.exports = (app) => {
 
         comment
             .save()
-            .then(() => Post.findById(req.params.postId))
-            .then((post) => {
+            .then(() => Promise.all([
+                Post.findById(req.params.postId),
+            ]))
+            .then(([post]) => {
                 post.comments.unshift(comment);
-                return post.save();
+                return Promise.all([
+                    post.save(),
+                ]);
+                
             })
-            .then(() => res.redirect('/'))
+            .then(() => res.redirect(`/posts/${req.params.postId}`))
             .catch((err) => {
                 console.log(err);
         })

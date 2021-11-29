@@ -45,9 +45,8 @@ module.exports = (app) => {
     // SHOW POST
     app.get('/posts/:id', (req, res) => {
       const currentUser = req.user;
-
         Post
-          .findById(req.params.id).lean().populate({path:"comments", populate: { path: 'author' }}).populate('author')
+          .findById(req.params.id).lean().populate('comments').lean()
           .then((post) => res.render('posts-show', { post, currentUser }))
           .catch((err) => {
               console.log(err.message);
@@ -57,8 +56,7 @@ module.exports = (app) => {
     app.get('/n/:subreddit', async (req, res) => {
       try {
         const currentUser = req.user;
-        const { subreddit } = req.params;
-        const posts = await Post.find({ subreddit }).lean().populate('author')
+        const posts = await Post.find({ subreddit:req.params.subreddit }).lean()
         res.render('posts-index', { posts, currentUser });
       } catch (err) {
         console.log(err.message);
