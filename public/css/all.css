@@ -1,0 +1,11 @@
+.comment-indent {
+  margin-left: 20px;
+}
+body {
+    background-color: gray;
+    color: darkmagenta;
+}
+.spec-nav {
+    color: salmon;
+    background-color: black;
+}
