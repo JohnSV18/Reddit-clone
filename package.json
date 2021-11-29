@@ -4,7 +4,7 @@
   "description": "💬 This tutorial is part of a four part series with the Giphy Search Tutorial, the Concentration Game, the Rotten Potatoes Tutorial.",
   "main": "server.js",
   "scripts": {
-    "test": "mocha --exit",
+    "test": "mocha --timeout 15000",
     "dev": "nodemon server.js"
   },
   "repository": {
