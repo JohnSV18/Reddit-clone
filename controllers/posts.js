@@ -25,6 +25,9 @@ module.exports = (app) => {
         const userId = req.user._id;
         const post = new Post(req.body);
         post.author = userId;
+        post.upVotes = [];
+        post.downVotes = [];
+        post.voteScore = 0;
         // Save instance of post model to db and redirect to the root 
         post
           .save()
@@ -62,4 +65,27 @@ module.exports = (app) => {
         console.log(err.message);
       }
       })
+    
+    app.put('/posts/:id/vote-up', (req, res) => {
+      Post.findById(req.params.id).then(post => {
+        post.upVotes.push(req.user._id);
+        post.voteScore +=1;
+        post.save();
+
+        return res.status(200);
+      }).catch(err => {
+        console.log(err);
+      })
+    });
+    app.put('/posts/:id/vote-down', (req, res) => {
+      Post.findById(req.params.id).then(post => {
+        post.downVotes.push(req.user._id);
+        post.voteScore -= 1;
+        post.save();
+      
+        return res.status(200);
+      }).catch(err => {
+        console.log(err);
+      });
+    });
 };
